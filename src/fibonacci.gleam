@@ -1,5 +1,5 @@
 import gleam/int.{to_string}
-import gleam/io
+import gleam/io.{println}
 import gleam/string.{repeat, length}
 
 // Calculate the 100th Fibonacci number: 354,224,848,179,261,915,075
@@ -9,9 +9,9 @@ pub fn main() {
   let fline = "| FIB(100) = " <> fib_100 <> " |"
   let ndash = length(fline) - 2
   let hline = "+" <> repeat("-", ndash) <> "+"
-  io.println(hline)
-  io.println(fline)
-  io.println(hline)
+  println(hline)
+  println(fline)
+  println(hline)
 }
 
 // Efficient Fibonacci implementation
