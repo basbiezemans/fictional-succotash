@@ -8,9 +8,13 @@ are always the sum of the two previous numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
 
 The algorithm in this tiny program is based on the following recursive formula.
 
-```math
+```text
 F(n) = F(n-1) + F(n-2)
 ```
+
+The above formula is notoriously slow because of the two recursive calls. For an 
+efficient solution, the algorithm takes advantage of a Gleam feature called TCO, 
+or tail-call optimization.
 
 ## Run the program in a Docker container
 ```bash
@@ -22,5 +26,7 @@ The output will show the 100th Fibonacci number: 354,224,848,179,261,915,075
 ...
    Compiled in 0.02s
     Running fibonacci.main
-354224848179261915075
++----------------------------------+
+| FIB(100) = 354224848179261915075 |
++----------------------------------+
 ```
