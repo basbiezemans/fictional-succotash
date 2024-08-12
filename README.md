@@ -12,13 +12,13 @@ The algorithm in this tiny program is based on the following recursive formula.
 F(n) = F(n-1) + F(n-2)
 ```
 
-The above formula is notoriously slow because of the two recursive calls. For an 
-efficient solution, the algorithm takes advantage of a Gleam feature called TCO, 
+The above formula is notoriously slow because of the two recursive calls. For an
+efficient solution, the algorithm takes advantage of a Gleam feature called TCO,
 or tail-call optimization.
 
 ## Run the program in a Docker container
 ```bash
-docker build -t fib . && docker run -it fib
+make docker
 ```
 ## Program output
 The output will show the 100th Fibonacci number: 354,224,848,179,261,915,075
