@@ -1,12 +1,36 @@
+import gleam/erlang.{get_line}
 import gleam/int.{to_string}
-import gleam/io.{println}
+import gleam/io.{println, println_error}
+import gleam/result
 import gleam/string.{repeat, length}
 
-// Calculate the 100th Fibonacci number: 354,224,848,179,261,915,075
+// Read and show the n-th term of the Fibonacci sequence
 
 pub fn main() {
-  let fib_100 = to_string(fibonacci(100))
-  let fline = "| FIB(100) = " <> fib_100 <> " |"
+  read_number() |> show_fib
+}
+
+fn read_number() {
+  case get_line("Enter a term: ") {
+    Ok("\n") -> 0
+    Ok(term) -> {
+      term
+        |> string.trim
+        |> int.parse
+        |> result.unwrap(0)
+        |> int.absolute_value
+    }
+    Error(_) -> {
+      println_error("Error reading from STDIN")
+      0
+    }
+  }
+}
+
+fn show_fib(term) {
+  let fib_n = fibonacci(term) |> to_string
+  let seq_i = to_string(term)
+  let fline = "| FIB(" <> seq_i <> ") = " <> fib_n <> " |"
   let ndash = length(fline) - 2
   let hline = "+" <> repeat("-", ndash) <> "+"
   println(hline)
