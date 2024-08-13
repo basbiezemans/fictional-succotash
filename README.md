@@ -20,12 +20,19 @@ or tail-call optimization.
 ```bash
 make docker
 ```
-## Program output
-The output will show the 100th Fibonacci number: 354,224,848,179,261,915,075
+
+## Enter a Fibonacci term
 ```text
 ...
-   Compiled in 0.02s
-    Running fibonacci.main
+Enter a term:
+```
+It asks you to enter the n-th term of the Fibonacci sequence.
+
+## Example output
+When you enter 100, it will show the 100th Fibonacci number: 354,224,848,179,261,915,075
+```text
+...
+Enter a term: 100
 +----------------------------------+
 | FIB(100) = 354224848179261915075 |
 +----------------------------------+
