@@ -22,11 +22,11 @@ make docker
 ```
 
 ## Enter a Fibonacci term
+The program will ask you to enter a Fibonacci sequence term.
 ```text
 ...
 Enter a term:
 ```
-It asks you to enter the n-th term of the Fibonacci sequence.
 
 ## Example output
 When you enter 100, it will show the 100th Fibonacci number: 354,224,848,179,261,915,075
