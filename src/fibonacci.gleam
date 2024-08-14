@@ -29,21 +29,24 @@ fn read_number() {
 
 fn show_fib(option) {
   case option {
-    Some(term) -> print_box(term, 60)
+    Some(term) -> {
+      let fib_n = fibonacci(term)
+      let fib_s = "FIB(" <> to_string(term)
+               <> ") = " <> to_string(fib_n)
+      print_box(fib_s, 60)
+    }
     None -> println_error("Error reading from STDIN")
   }
 }
 
-fn print_box(term, boxsize) {
-  let fib_n = fibonacci(term) |> to_string
-  let seq_i = to_string(term)
-  let fline = "FIB(" <> seq_i <> ") = " <> fib_n
-  let lines = chunk_split(fline, boxsize, [])
-  let hline = repeat("─", boxsize)
-  let fbody = string.join(lines, " │\n│ ")
-  println("┌─" <> hline <> "─┐")
-  println("│ " <> fbody <> " │")
-  println("└─" <> hline <> "─┘")
+fn print_box(text, size) {
+  let line = repeat("─", size)
+  let body = text
+    |> chunk_split(size, [])
+    |> string.join(" │\n│ ")
+  println("┌─" <> line <> "─┐")
+  println("│ " <> body <> " │")
+  println("└─" <> line <> "─┘")
 }
 
 fn chunk_split(str, size, chunks) {
