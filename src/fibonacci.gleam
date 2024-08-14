@@ -6,8 +6,8 @@ import gleam/string
 
 import console.{read_number, draw_box}
 
-// Read and show the n-th term of the Fibonacci sequence
-
+/// Read and show the n-th term of the Fibonacci sequence.
+/// 
 pub fn main() {
   read_number("Enter a term: ") |> show_fib
 }

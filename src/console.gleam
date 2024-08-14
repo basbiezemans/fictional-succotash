@@ -6,7 +6,8 @@ import gleam/option.{type Option, Some, None}
 import gleam/result
 import gleam/string.{repeat, length}
 
-/// Read a positive number from STDIN
+/// Read a positive number from STDIN.
+/// 
 pub fn read_number(prompt: String) -> Option(Int) {
   case get_line(prompt) {
     Ok("\n") -> Some(0)
@@ -22,6 +23,8 @@ pub fn read_number(prompt: String) -> Option(Int) {
   }
 }
 
+/// Draw a certain sized box around the given text.
+/// 
 pub fn draw_box(text: String, size: Int) -> Nil {
   let line = repeat("─", size)
   let body = text
