@@ -18,7 +18,7 @@ or tail-call optimization.
 
 ## Run the program in a Docker container
 If you don't have Docker installed locally, the easiest way to run the program is
-to fork this repo, create a GitHub _codespace_, and run the following command in a
+to fork this repo, create a GitHub Codespace, and run the following command in its
 terminal.
 ```bash
 make docker
