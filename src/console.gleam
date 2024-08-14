@@ -24,11 +24,15 @@ pub fn read_number() -> Option(Int) {
 pub fn draw_box(text: String, size: Int) -> Nil {
   let line = repeat("─", size)
   let body = text
-    |> chunk_split(size, [])
+    |> str_split(size)
     |> string.join(" │\n│ ")
   println("┌─" <> line <> "─┐")
   println("│ " <> body <> " │")
   println("└─" <> line <> "─┘")
+}
+
+fn str_split(str: String, size: Int) -> List(String) {
+  chunk_split(str, size, [])
 }
 
 fn chunk_split(str: String, size: Int, chunks: List(String)) -> List(String) {
