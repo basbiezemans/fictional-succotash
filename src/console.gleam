@@ -6,11 +6,12 @@ import gleam/option.{type Option, Some, None}
 import gleam/result
 import gleam/string.{repeat, length}
 
-pub fn read_number() -> Option(Int) {
-  case get_line("Enter a term: ") {
+/// Read a positive number from STDIN
+pub fn read_number(prompt: String) -> Option(Int) {
+  case get_line(prompt) {
     Ok("\n") -> Some(0)
-    Ok(term) -> {
-      term
+    Ok(input) -> {
+      input
         |> string.trim
         |> int.parse
         |> result.unwrap(0)
