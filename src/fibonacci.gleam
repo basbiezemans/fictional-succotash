@@ -1,7 +1,7 @@
 import gleam/int.{to_string}
 import gleam/io.{println_error}
 import gleam/list.{fold}
-import gleam/option.{Some, None}
+import gleam/option.{type Option, Some, None}
 import gleam/string
 
 import console.{read_number, draw_box}
@@ -12,7 +12,7 @@ pub fn main() {
   read_number() |> show_fib
 }
 
-fn show_fib(option) {
+fn show_fib(option: Option(Int)) -> Nil {
   case option {
     Some(term) -> {
       let ans = [
@@ -27,7 +27,7 @@ fn show_fib(option) {
 
 // Efficient Fibonacci implementation
 
-fn fibonacci(i) {
+fn fibonacci(i: Int) -> Int {
   case i {
     0 -> 0
     1 -> 1
@@ -35,7 +35,7 @@ fn fibonacci(i) {
   }
 }
 
-fn fib(i, x, y) {
+fn fib(i: Int, x: Int, y: Int) -> Int {
   case i {
     0 -> x + y
     n -> fib(n - 1, y, x + y)
