@@ -5,6 +5,7 @@ import gleam/option.{type Option, Some, None}
 import gleam/string
 
 import console.{read_number, draw_box}
+import sequence.{fibonacci}
 
 /// Read and show the n-th term of the Fibonacci sequence.
 /// 
@@ -22,22 +23,5 @@ fn show_fib(option: Option(Int)) -> Nil {
       draw_box(fold(ans, "", string.append), 60)
     }
     None -> println_error("Error reading from STDIN")
-  }
-}
-
-// Efficient Fibonacci implementation
-
-fn fibonacci(i: Int) -> Int {
-  case i {
-    0 -> 0
-    1 -> 1
-    n -> fib(n - 2, 0, 1)
-  }
-}
-
-fn fib(i: Int, x: Int, y: Int) -> Int {
-  case i {
-    0 -> x + y
-    n -> fib(n - 1, y, x + y)
   }
 }
