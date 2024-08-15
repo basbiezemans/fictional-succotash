@@ -1,4 +1,4 @@
-name = "fibonacci"
+name = "main"
 version = "0.1.0"
 gleam = ">= 0.32.0"
 
