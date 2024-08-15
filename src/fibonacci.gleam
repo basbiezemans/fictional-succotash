@@ -16,11 +16,11 @@ pub fn main() {
 fn show_fib(option: Option(Int)) -> Nil {
   case option {
     Some(term) -> {
-      let ans = [
+      [
         "FIB(", to_string(term),
         ") = ", to_string(fibonacci(term))
       ]
-      draw_box(fold(ans, "", string.append), 60)
+      |> fold("", string.append) |> draw_box(60)
     }
     None -> println_error("Error reading from STDIN")
   }
