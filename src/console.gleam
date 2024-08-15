@@ -6,7 +6,7 @@ import gleam/option.{type Option, Some, None}
 import gleam/result
 import gleam/string.{repeat, length}
 
-/// Read a positive number from STDIN.
+/// Read an integer number from STDIN.
 /// 
 pub fn read_number(prompt: String) -> Option(Int) {
   case get_line(prompt) {
@@ -15,9 +15,7 @@ pub fn read_number(prompt: String) -> Option(Int) {
       input
         |> string.trim
         |> int.parse
-        |> result.unwrap(0)
-        |> int.absolute_value
-        |> Some
+        |> option.from_result
     }
     Error(_) -> None
   }
