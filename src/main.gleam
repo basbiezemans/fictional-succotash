@@ -5,7 +5,7 @@ import gleam/option.{type Option, Some, None}
 import gleam/string
 
 import console.{read_number, draw_box}
-import sequence.{fibonacci}
+import fibonacci.{fibonacci}
 
 /// Read and show the n-th term of the Fibonacci sequence.
 /// 
