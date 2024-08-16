@@ -4,6 +4,9 @@ build:
 run:
 	docker run -it fib
 
+shell:
+	docker run -it fib sh
+
 # CLEANUP
 # -a, --all		Remove all unused images not just dangling ones
 # -f, --force	Do not prompt for confirmation
