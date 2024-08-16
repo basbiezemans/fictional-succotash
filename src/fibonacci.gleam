@@ -1,7 +1,5 @@
 import gleam/float
-import gleam/int
-import gleam/io
-import gleam/result
+import gleam/int.{to_float}
 
 /// Calculate the n-th term of the Fibonacci sequence.
 /// 
@@ -26,11 +24,14 @@ fn fib(i: Int, x: Int, y: Int) -> Int {
 //
 fn neg_fib(i: Int) -> Int {
   let n = int.absolute_value(i)
-  let fib = fibonacci(n)
-  let base = -1
-  base
-    |> int.power(int.to_float(n + 1))
-    |> result.unwrap(0.0)
-    |> float.truncate
-    |> int.multiply(fib)
+  let e = n + 1
+  case int.power(-1, to_float(e)) {
+    Ok(sign) -> {
+      let fib = fibonacci(n)
+      sign
+        |> float.truncate
+        |> int.multiply(fib)
+    }
+    Error(_) -> panic as "No way!"
+  }
 }
