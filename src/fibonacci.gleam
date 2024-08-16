@@ -1,5 +1,5 @@
 import gleam/float
-import gleam/int.{to_float}
+import gleam/int.{to_float, absolute_value as abs}
 
 /// Calculate the n-th term of the Fibonacci sequence.
 /// 
@@ -23,15 +23,16 @@ fn fib(i: Int, x: Int, y: Int) -> Int {
 // F(-n) = (-1)^(n + 1) × F(n)
 //
 fn neg_fib(i: Int) -> Int {
-  let n = int.absolute_value(i)
-  let e = n + 1
+  let n = abs(i)
+  pow_m1(n + 1) * fibonacci(n)
+}
+
+// Base -1 exponentiation
+// pow_m1(exp) = (-1)^exp
+//
+fn pow_m1(e: Int) -> Int {
   case int.power(-1, to_float(e)) {
-    Ok(sign) -> {
-      let fib = fibonacci(n)
-      sign
-        |> float.truncate
-        |> int.multiply(fib)
-    }
-    Error(_) -> panic as "No way!"
+    Ok(num) -> float.truncate(num)
+    Error(_) -> panic
   }
 }
