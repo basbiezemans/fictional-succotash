@@ -50,3 +50,19 @@ Enter a term: 1000
 │ 98969649928516003704476137795166849228875                    │
 └──────────────────────────────────────────────────────────────┘
 ```
+
+## Negafibonacci numbers
+Negafibonacci numbers are an extension of the standard Fibonacci sequence to include negative terms. They extend this sequence using the same relationship, but with a twist.
+```text
+F(−n) = (−1)^(n+1)⋅F(n)
+```
+This means that for negative terms (indices), the Fibonacci sequence behaves as follows:
+```text
+F(−1) = 1
+F(−2) = −1
+F(−3) = 2
+F(−4) = −3
+F(−5) = 5
+...
+```
+So, negafibonacci numbers alternate in sign, and their absolute values follow the standard Fibonacci sequence.
