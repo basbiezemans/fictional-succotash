@@ -31,8 +31,6 @@ fn neg_fib(i: Int) -> Int {
 // pow_m1(exp) = (-1)^exp
 //
 fn pow_m1(e: Int) -> Int {
-  case int.power(-1, to_float(e)) {
-    Ok(num) -> float.truncate(num)
-    Error(_) -> panic
-  }
+  let assert Ok(num) = int.power(-1, to_float(e))
+  float.truncate(num)
 }
