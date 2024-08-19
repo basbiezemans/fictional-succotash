@@ -1,10 +1,11 @@
 import gleam/erlang.{get_line}
+import gleam/float.{ceiling}
 import gleam/int
 import gleam/io.{println}
 import gleam/list
 import gleam/option.{type Option, Some, None}
 import gleam/result
-import gleam/string.{repeat, length}
+import gleam/string.{repeat, length, pad_right}
 
 /// Read an integer number from STDIN.
 /// 
@@ -25,12 +26,29 @@ pub fn read_number(prompt: String) -> Option(Int) {
 /// 
 pub fn draw_box(text: String, size: Int) -> Nil {
   let line = repeat("─", size)
+  let mult = text
+    |> length
+    |> multiple_of(size)
   let body = text
+    |> pad_right(mult, " ")
     |> str_split(size)
     |> string.join(" │\n│ ")
   println("┌─" <> line <> "─┐")
   println("│ " <> body <> " │")
   println("└─" <> line <> "─┘")
+}
+
+// Rounds a value to a multiple of a given factor.
+//
+fn multiple_of(value: Int, factor: Int) -> Int {
+  case value > factor {
+    True -> {
+      let x = int.to_float(value)
+      let y = int.to_float(factor)
+      ceiling(x /. y) *. y |> float.truncate
+    }
+    False -> factor
+  }
 }
 
 fn str_split(str: String, size: Int) -> List(String) {
@@ -45,9 +63,6 @@ fn chunk_split(str: String, size: Int, chunks: List(String)) -> List(String) {
       let tail = string.slice(str, size, len)
       chunk_split(tail, size, [head, ..chunks])
     }
-    False -> {
-      let last = string.pad_right(str, size, " ")
-      [last, ..chunks] |> list.reverse
-    }
+    False -> [str, ..chunks] |> list.reverse
   }
 }
