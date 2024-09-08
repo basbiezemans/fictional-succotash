@@ -4,7 +4,6 @@ import gleam/int
 import gleam/io.{println}
 import gleam/list
 import gleam/option.{type Option, Some, None}
-import gleam/result
 import gleam/string.{repeat, length, pad_right}
 
 /// Read an integer number from STDIN.
