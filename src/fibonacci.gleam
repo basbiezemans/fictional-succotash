@@ -12,6 +12,8 @@ pub fn fibonacci(i: Int) -> Int {
   }
 }
 
+// Tail-recursive part.
+//
 fn fib(i: Int, x: Int, y: Int) -> Int {
   case i {
     0 -> x + y
