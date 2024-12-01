@@ -3,8 +3,8 @@ import gleam/float.{ceiling}
 import gleam/int
 import gleam/io.{println}
 import gleam/list
-import gleam/option.{type Option, Some, None}
-import gleam/string.{repeat, length, pad_right}
+import gleam/option.{type Option, None, Some}
+import gleam/string.{length, pad_right, repeat}
 
 /// Read an integer number from STDIN.
 ///
@@ -13,9 +13,9 @@ pub fn read_number(prompt: String) -> Option(Int) {
     Ok("\n") -> Some(0)
     Ok(input) -> {
       input
-        |> string.trim
-        |> int.parse
-        |> option.from_result
+      |> string.trim
+      |> int.parse
+      |> option.from_result
     }
     Error(_) -> None
   }
@@ -23,12 +23,14 @@ pub fn read_number(prompt: String) -> Option(Int) {
 
 /// Draw a certain sized box around the given text.
 ///
-pub fn draw_box(text: String, size: Int) -> Nil {
+pub fn draw_box(text: String, size size: Int) -> Nil {
   let line = repeat("─", size)
-  let mult = text
+  let mult =
+    text
     |> length
     |> multiple_of(size)
-  let body = text
+  let body =
+    text
     |> pad_right(mult, " ")
     |> str_split(size)
     |> string.join(" │\n│ ")
