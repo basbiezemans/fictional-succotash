@@ -17,7 +17,7 @@ fn show_fib(option: Option(Int)) -> Nil {
     Some(term) -> {
       ["FIB(", to_string(term), ") = ", to_string(fibonacci(term))]
       |> string.concat
-      |> draw_box(60)
+      |> draw_box(size: 60)
     }
     None -> println_error("Error reading from STDIN")
   }
