@@ -13,8 +13,12 @@ F(n) = F(n-1) + F(n-2)
 ```
 
 The above formula is notoriously slow because of the two recursive calls. For an
-efficient solution, the algorithm takes advantage of a Gleam feature called TCO,
-or tail-call optimization.
+efficient solution, the algorithm takes advantage of a Gleam feature called TCO
+or tail-call optimization. Below is the tail-recursive formula.
+
+```text
+F(n, x, y) = F(n-1, y, x + y)
+```
 
 ## Run the program in a Docker container
 If you don't have Docker installed locally, the easiest way to run the program is
