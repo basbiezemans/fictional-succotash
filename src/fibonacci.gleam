@@ -1,39 +1,57 @@
-import gleam/float
-import gleam/int.{absolute_value as abs, to_float}
+import fibonacci_lib.{fibonacci}
+import gleam/erlang.{get_line}
+import gleam/int.{to_string}
+import gleam/io.{println, println_error}
+import gleam/option.{type Option, None, Some}
+import gleam/string.{length, pad_right, repeat}
+import utils/internal.{multiple_of, str_split}
 
-/// Calculate the n-th term of the Fibonacci sequence.
+/// Read and show the n-th term of the Fibonacci sequence.
 ///
-pub fn fibonacci(i: Int) -> Int {
-  case i {
-    0 -> 0
-    1 -> 1
-    n if n > 1 -> fib(n - 2, 0, 1)
-    negative_i -> neg_fib(negative_i)
+pub fn main() {
+  read_number("Enter a term: ") |> show_fib
+}
+
+fn show_fib(option: Option(Int)) -> Nil {
+  case option {
+    Some(term) -> {
+      ["FIB(", to_string(term), ") = ", to_string(fibonacci(term))]
+      |> string.concat
+      |> draw_box(size: 60)
+    }
+    None -> println_error("Error reading from STDIN")
   }
 }
 
-// Tail-recursive part.
-// F(n, x, y) = F(n - 1, y, x + y)
+// Read an integer number from STDIN.
 //
-fn fib(i: Int, x: Int, y: Int) -> Int {
-  case i {
-    0 -> x + y
-    n -> fib(n - 1, y, x + y)
+fn read_number(prompt: String) -> Option(Int) {
+  case get_line(prompt) {
+    Ok("\n") -> Some(0)
+    Ok(input) -> {
+      input
+      |> string.trim
+      |> int.parse
+      |> option.from_result
+    }
+    Error(_) -> None
   }
 }
 
-// Extension to negative integers.
-// F(-n) = (-1)^(n + 1) × F(n)
+// Draw a certain sized box around the given text.
 //
-fn neg_fib(i: Int) -> Int {
-  let n = abs(i)
-  pow_m1(n + 1) * fibonacci(n)
-}
-
-// Base -1 exponentiation.
-// pow_m1(exp) = (-1)^exp
-//
-fn pow_m1(e: Int) -> Int {
-  let assert Ok(num) = int.power(-1, to_float(e))
-  float.truncate(num)
+fn draw_box(text: String, size size: Int) -> Nil {
+  let line = repeat("─", size)
+  let mult =
+    text
+    |> length
+    |> multiple_of(size)
+  let body =
+    text
+    |> pad_right(mult, " ")
+    |> str_split(size)
+    |> string.join(" │\n│ ")
+  println("┌─" <> line <> "─┐")
+  println("│ " <> body <> " │")
+  println("└─" <> line <> "─┘")
 }
