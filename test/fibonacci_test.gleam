@@ -3,7 +3,7 @@ import gleam/list
 import gleam/pair.{first, second}
 import gleeunit
 import gleeunit/should
-import utils/internal.{multiple_of, str_split}
+import utils/util_lib.{multiple_of, str_split}
 
 pub fn main() {
   gleeunit.main()

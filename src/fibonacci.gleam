@@ -4,7 +4,7 @@ import gleam/int.{to_string}
 import gleam/io.{println, println_error}
 import gleam/option.{type Option, None, Some}
 import gleam/string.{length, pad_right, repeat}
-import utils/internal.{multiple_of, str_split}
+import utils/util_lib.{multiple_of, str_split}
 
 /// Read and show the n-th term of the Fibonacci sequence.
 ///
